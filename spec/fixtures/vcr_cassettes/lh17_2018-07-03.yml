@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.lufthansa.com/v1/operations/flightstatus/LH17/2018-07-03
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Lufthansa/0.1.0; ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-linux]
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Authorization:
+      - Bearer 4zvfufvpney4mfj8zxne5mub
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 03 Jul 2018 07:43:07 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=q5a0ndcxlr3pyl7csabihw69;Path=/operations_fs_v1.2.0;Secure;HttpOnly
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Mashery-Message-Id:
+      - 35ee8e46-e87d-46bd-b1ee-4ca7d5abd7ce
+      X-Mashery-Responder:
+      - prod-j-worker-eu-west-1c-23.mashery.com
+      Content-Length:
+      - '977'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"FlightStatusResource":{"Flights":{"Flight":{"Departure":{"AirportCode":"HAM","ScheduledTimeLocal":{"DateTime":"2018-07-03T12:00"},"ScheduledTimeUTC":{"DateTime":"2018-07-03T10:00Z"},"TimeStatus":{"Code":"OT","Definition":"Flight
+        On Time"},"Terminal":{"Name":2,"Gate":"C15"}},"Arrival":{"AirportCode":"FRA","ScheduledTimeLocal":{"DateTime":"2018-07-03T13:10"},"ScheduledTimeUTC":{"DateTime":"2018-07-03T11:10Z"},"TimeStatus":{"Code":"OT","Definition":"Flight
+        On Time"},"Terminal":{"Name":1,"Gate":"A24"}},"MarketingCarrier":{"AirlineID":"LH","FlightNumber":"017"},"OperatingCarrier":{"AirlineID":"LH","FlightNumber":"017"},"Equipment":{"AircraftCode":321},"FlightStatus":{"Code":"NA","Definition":"No
+        status"},"ServiceType":"Passenger"}},"Meta":{"@Version":"1.0.0","Link":[{"@Href":"https:\/\/api.lufthansa.com\/v1\/operations\/flightstatus\/LH17\/2018-07-03","@Rel":"self"},{"@Href":"https:\/\/api.lufthansa.com\/v1\/references\/airports\/{airportCode}","@Rel":"related"}]}}}'
+    http_version: 
+  recorded_at: Tue, 03 Jul 2018 07:44:42 GMT
+recorded_with: VCR 4.0.0
