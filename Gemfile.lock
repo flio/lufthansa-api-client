@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lufthansa (0.1.0)
+    lufthansa-api-client (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -81,7 +81,7 @@ DEPENDENCIES
   growl
   guard
   guard-rspec
-  lufthansa!
+  lufthansa-api-client!
   rake (~> 10.0)
   rspec (~> 3.0)
   vcr

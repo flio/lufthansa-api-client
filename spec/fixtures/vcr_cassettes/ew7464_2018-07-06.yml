@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.lufthansa.com/v1/operations/flightstatus/EW7464/2018-07-06
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Lufthansa/0.1.0; ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-linux]
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Authorization:
+      - Bearer 4n7rm7pbh2x527btdx37e45x
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Fri, 06 Jul 2018 06:59:46 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=ztl0fa03mjcj1aspbkvwhb07k;Path=/operations_fs_v1.2.0;Secure;HttpOnly
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Mashery-Message-Id:
+      - b9c62b2d-040e-415e-bc52-398e8b44e432
+      X-Mashery-Responder:
+      - prod-j-worker-eu-west-1a-02.mashery.com
+      Content-Length:
+      - '1176'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"FlightStatusResource":{"Flights":{"Flight":{"Departure":{"AirportCode":"HAM","ScheduledTimeLocal":{"DateTime":"2018-07-06T07:20"},"ScheduledTimeUTC":{"DateTime":"2018-07-06T05:20Z"},"ActualTimeLocal":{"DateTime":"2018-07-06T08:59"},"ActualTimeUTC":{"DateTime":"2018-07-06T06:59Z"},"TimeStatus":{"Code":"DL","Definition":"Flight
+        Delayed"},"Terminal":{"Name":2,"Gate":"B47"}},"Arrival":{"AirportCode":"LHR","ScheduledTimeLocal":{"DateTime":"2018-07-06T08:05"},"ScheduledTimeUTC":{"DateTime":"2018-07-06T07:05Z"},"EstimatedTimeLocal":{"DateTime":"2018-07-06T09:17"},"EstimatedTimeUTC":{"DateTime":"2018-07-06T08:17Z"},"TimeStatus":{"Code":"DL","Definition":"Flight
+        Delayed"},"Terminal":{"Name":2}},"MarketingCarrier":{"AirlineID":"EW","FlightNumber":7464},"OperatingCarrier":{"AirlineID":"EW","FlightNumber":7464},"Equipment":{"AircraftCode":"31B"},"FlightStatus":{"Code":"DP","Definition":"Flight
+        Departed"},"ServiceType":"Passenger"}},"Meta":{"@Version":"1.0.0","Link":[{"@Href":"https:\/\/api.lufthansa.com\/v1\/operations\/flightstatus\/EW7464\/2018-07-06","@Rel":"self"},{"@Href":"https:\/\/api.lufthansa.com\/v1\/references\/airports\/{airportCode}","@Rel":"related"}]}}}'
+    http_version: 
+  recorded_at: Fri, 06 Jul 2018 07:00:27 GMT
+recorded_with: VCR 4.0.0
