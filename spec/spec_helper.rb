@@ -17,6 +17,7 @@ RSpec.configure do |config|
   Lufthansa.api_id = 9999
   Lufthansa.client_secret = 'client_id'
 
+
   VCR.configure do |config|
     config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
     config.hook_into :webmock

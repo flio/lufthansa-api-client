@@ -76,12 +76,14 @@ module Lufthansa
   require 'lufthansa/flight_status'
   require 'lufthansa/equipment'
   require 'lufthansa/terminal'
+  require 'lufthansa/operating_carrier'
 
   CUSTOM_MODELS = {
     'Departure' => Lufthansa::FlightPart,
     'Arrival' => Lufthansa::FlightPart,
     'TimeStatus' => Lufthansa::FlightStatus,
-    'FlightStatus' => Lufthansa::FlightStatus
+    'FlightStatus' => Lufthansa::FlightStatus,
+    'OperatingCarrier' => Lufthansa::OperatingCarrier
   }.freeze
 
 end
