@@ -9,11 +9,14 @@ group :development do
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'growl'
-  gem 'byebug'
   gem 'webmock'
+  gem 'rubocop'
 end
 
 group :test do
   gem 'vcr'
+end
+
+group :development, :test do
   gem 'byebug'
 end

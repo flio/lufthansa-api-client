@@ -10,7 +10,7 @@ module Lufthansa
       defined? @message and @message or super
     end
   end
-  # This exception is raised if lounge_buddy has not been configured.
+
   class ConfigurationError < Error
   end
 
@@ -54,10 +54,14 @@ module Lufthansa
 
     def store
       return @store if defined? @store
-       # && @store || raise(ConfigurationError, 'Lufthansa.store not configured')
        Lufthansa::Stores::FileStore.new(file: 'tokens.yml')
     end
     attr_writer :store
+
+    def timeout
+      @timeout || 5
+    end
+    attr_writer :timeout
   end
   
   require 'lufthansa/version'

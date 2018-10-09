@@ -1,0 +1,19 @@
+AllCops:
+  Exclude:
+   - 'bin/*'
+   - 'config/**/*'
+
+Rails:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RegexpLiteral:
+  EnforcedStyle: slashes

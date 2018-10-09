@@ -27,12 +27,12 @@ module Lufthansa
         private
 
         METHODS = {
-          :head   => ::Net::HTTP::Head,
-          :get    => ::Net::HTTP::Get,
-          :post   => ::Net::HTTP::Post,
-          :put    => ::Net::HTTP::Put,
-          :delete => ::Net::HTTP::Delete
-        }
+          head:   ::Net::HTTP::Head,
+          get:    ::Net::HTTP::Get,
+          post:   ::Net::HTTP::Post,
+          put:    ::Net::HTTP::Put,
+          delete: ::Net::HTTP::Delete
+        }.freeze
 
         def post_send_form(uri, body)
           uri = base_uri + uri
@@ -45,32 +45,30 @@ module Lufthansa
           head.delete_if { |_, value| value.nil? }
           uri = base_uri + uri
 
-          query_params = "?"
+          query_params = '?'
           # query_params += "#{CGI.escape 'appId'}=#{CGI.escape Lufthansa.app_id.to_s}"
           # query_params += "&#{CGI.escape 'appKey'}=#{CGI.escape Lufthansa.app_key.to_s}"
           if options[:params] && !options[:params].empty?
-            pairs = options[:params].map { |key, value|
+            pairs = options[:params].map do |key, value|
               "#{CGI.escape key.to_s}=#{CGI.escape value.to_s}"
-            }
+            end
             query_params += "&#{pairs.join '&'}"
           end
           uri += query_params
 
-          request = METHODS[method].new uri.request_uri, head
+          request = METHODS[method].new(uri.request_uri, head)
+
           if options[:body]
             request['Content-Type'] ||= content_type
             request.body = options[:body]
           end
-          if options[:etag]
-            request['If-None-Match'] = options[:etag]
-          end
-          if options[:format]
-            request['Accept'] = FORMATS[options[:format]]
-          end
-          if options[:locale]
-            request['Accept-Language'] = options[:locale]
-          end
+          
+          request['If-None-Match'] = options[:etag] if options[:etag]
+          request['Accept'] = FORMATS[options[:format]] if options[:format]
+          request['Accept-Language'] = options[:locale] if options[:locale]
           http = ::Net::HTTP.new uri.host, uri.port
+          http.read_timeout = Lufthansa.timeout
+          
           http.use_ssl = uri.scheme == 'https'
           request['Authorization'] = Lufthansa::Auth.new.get_token
 
@@ -86,13 +84,13 @@ module Lufthansa
             end
             start_time = Time.now
           end
-          response = http.start do 
+          response = http.start do
             http.request request
           end
           code = response.code.to_i
           if code == 401
             Lufthansa::Auth.new.get_token(force_update: true)
-            response = http.start do 
+            response = http.start do
               http.request request
             end
           end
@@ -100,11 +98,11 @@ module Lufthansa
           if Lufthansa.logger
             latency = (Time.now - start_time) * 1_000
             level = case code
-              when 200...300 then :info
-              when 300...400 then :warn
-              when 400...500 then :error
-              else                :fatal
-            end
+                    when 200...300 then :info
+                    when 300...400 then :warn
+                    when 400...500 then :error
+                    else                :fatal
+                    end
             Lufthansa.log level, "<=== %d %s (%.1fms)" % [
               code,
               response.class.name[9, response.class.name.length].gsub(
